@@ -2,6 +2,8 @@
 
 Generate stylized maps of horrible intersections in your city.
 
+[Blog post](http://blog.jordan.matelsky.com/Intersections/)
+
 ## Inspiration
 Check out [this amazing work](https://www.etsy.com/listing/540156360/intersections-of-seattle-minimalist-map?ref=shop_home_active_1) by Peter Gorman at BarelyMaps. This project is a poor emulation of this beautiful design!
 
