@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>intersections</title>
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:600" rel="stylesheet">
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+		}
+
+		html, body {
+			background: #555;
+			font-family: 'Titillium Web', sans-serif;
+		}
+
+		#container {
+			width: 90%;
+			max-width: 55em;
+			margin: auto;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.item {
+			width: 10em;
+			display: inline-block;
+			text-align: center;
+			margin: 1em;
+		}
+		.item .image {
+			width: 90%;
+		}
+		.item .title {
+			color: #dedede;
+			font-size: 0.8em;
+		}
+
+		.page-title {
+		    color: #222;
+		    font-size: 1.5em;
+		}
+
+		.page-title-big {
+			font-size: 2em;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+
+	<script>
+		fetch('./manifest.json').then(r => r.json()).then(data => {
+			document.getElementById('container').innerHTML = "";
+			document.getElementById('container').innerHTML += (
+				`<div class="page-title">intersections of</div>
+				<div class="page-title-big">${data.city}</div>`
+			);
+			document.getElementById('container').innerHTML += (
+				data.images.map(d => {
+					return `
+						<div class="item">
+							<img 
+								src="./images/${d.name}.png" 
+								class="image" 
+								style="filter: hue-rotate(${Math.random() * 360}deg) drop-shadow(0px 0px 3px #333)"
+							/>
+							<div class="title">${d.roads}</div>
+						</div>
+						`;
+				}).join("")
+			);
+		});
+	</script>
+</body>
+</html>
