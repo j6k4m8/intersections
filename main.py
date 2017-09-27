@@ -107,7 +107,7 @@ def clean_name(s):
     s = s.lower()
     for qual in quals:
         if s.endswith(" " + qual):
-            return s[:(1 + len(qual))]
+            return s[:-1 * (1 + len(qual))]
     return s
 
 print("Generating images...")
