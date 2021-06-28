@@ -114,7 +114,7 @@ print("Generating images...")
 fnames = []
 ii = 0
 for ci in complex_intersections[:IMG_COUNT]:
-    gg = ox.graph_from_point(ci, distance=100, simplify=False, truncate_by_edge=True)
+    gg = ox.graph_from_point(ci, dist=100, simplify=False, truncate_by_edge=True)
     rds = set([e[2].get('name') for e in gg.edges(data=True)])
     try:
         rds.remove(None)
@@ -136,10 +136,9 @@ for ci in complex_intersections[:IMG_COUNT]:
     
     ox.plot_graph(
         gg, 
-        fig_height=3, fig_width=3, bgcolor="#55555500", 
+        figsize=(3,3), bgcolor="#55555500", 
         node_size=0, edge_linewidth=6, edge_color="#c0fefe",
-        use_geom=True, 
-        save=True, show=False, filename=fname
+        save=True, show=False, filepath=fname+'.png'
     )
     
 print("Outputting JSON...")
