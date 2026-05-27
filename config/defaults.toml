@@ -1,0 +1,21 @@
+[project]
+# city = "Baltimore"
+city = "Philadelphia"
+count = 12
+
+[overpass]
+timeout_seconds = 180
+endpoint = "https://overpass-api.de/api/interpreter"
+
+[clustering]
+signal_cluster_radius_m = 100.0
+min_cluster_size = 2
+
+[rendering]
+network_distance_m = 100.0
+network_type = "drive"
+figure_facecolor = "#0d1b1e00"
+edge_color = "#b7fff8"
+background_color = "#0f1618"
+road_half_width_m = 7.5
+outline_width_m = 2.5

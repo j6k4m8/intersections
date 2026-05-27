@@ -1,39 +1,58 @@
 # intersections
 
-Generate stylized maps of horrible intersections in your city.
+Generate stylized maps of signal-dense street intersections from OpenStreetMap.
 
-[Blog post](http://blog.jordan.matelsky.com/Intersections/)
+The repository now follows a simple scientific workflow layout:
 
-## Inspiration
-Check out [this amazing work](https://www.etsy.com/listing/540156360/intersections-of-seattle-minimalist-map?ref=shop_home_active_1) by Peter Gorman at BarelyMaps. This project is a poor emulation of this beautiful design!
-
-## Demo
-[![image](https://user-images.githubusercontent.com/693511/30840934-f681fac8-a247-11e7-9de0-610fce48ccc7.png)](https://jordan.matelsky.com/sketch/intersections/)
-
-[Demo](https://jordan.matelsky.com/sketch/intersections/)
-
-## Configuration
-
-Install the requirements:
-
-```shell
-pip install -r requirements.txt
+```text
+analysis/
+config/
+data/
+  raw/
+  provided/
+  generated/
+notebooks/
+results/
+  data/
+  figures/
+src/
+tests/
+Snakefile
 ```
 
-## Usage
+## Quick start
 
-    $ ./main.py [city [count]]
+```bash
+uv sync
+uv run snakemake --cores 1
+```
 
-For example,
+That will:
 
-    $ ./main.py Boston 123
+1. Download raw traffic-signal data into `data/raw/`.
+2. Cluster candidate intersections into `data/generated/`.
+3. Render final gallery figures into `results/figures/`.
+4. Write gallery manifests into `results/data/`.
 
-will generate 123 images of intersections in Boston.
+## Common commands
 
-    $ ./main.py Boston
+Run the full pipeline without Snakemake:
 
-will default 100. 
+```bash
+uv run intersections run --city Boston --count 24
+```
 
-    $ ./main.py
+Rebuild the workflow:
 
-with NO arguments will default to Baltimore.
+```bash
+uv run snakemake --cores 1 --forcerun render_gallery
+```
+
+## Viewer
+
+Open [index.html](index.html) through a local web server after generating results. It loads `results/data/latest_manifest.json` by default.
+
+## Notes
+
+-   `config/defaults.toml` controls the default city, output count, clustering radius, and render settings.
+-   Use a place name that OpenStreetMap exposes as an area name, for example `Baltimore` or `Boston`.
